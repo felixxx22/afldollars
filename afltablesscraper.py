@@ -17,8 +17,7 @@ def scrape(team, year):
     for row in rows:
         cols = row.find_all('td')
         cols = [ele.text.strip() for ele in cols]
-        data.append([ele for ele in cols if ele]) # Get rid of empty values
+        cols.pop()
+        data.append([ele for ele in cols if ele != '-' and ele])# Get rid of empty values
 
     return data
-
-print(scrape('geelong', '2022'))
