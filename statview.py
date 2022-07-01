@@ -1,5 +1,6 @@
 from afltablesscraper import *
 import numpy as np
+import pandas as pd
 
 def average(player_data):
     sum = 0
@@ -24,9 +25,11 @@ def fiveGameAverage(player_data):
 
 teams = ['adelaide', 'brisbanel','carlton', 'collingwood', 'essendon','fremantle', 'geelong', 'goldcoast', 'gws','hawthorn','melbourne','kangaroos','padelaide','richmond','stkilda','swans','westcoast','bullldogs']
 
+
 for i in teams:
     data = scrape(i, '2022')
-    for j in data:
-        print(j[0])
-        print(average(j))
-        print(fiveGameAverage(j))
+
+    last5 = data.iloc[:, -5:]
+    last5avg = last5.mean(axis=1)
+    print(last5avg)
+    break
